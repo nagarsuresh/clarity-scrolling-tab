@@ -200,7 +200,7 @@ var TabGroupComponent = /** @class */ (function () {
 /***/ "./src/app/tabs/tab-header/tab-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"btn btn-icon left-arrow\" (click)=\"scrollTo('left')\">\n  <clr-icon shape=\"angle\" dir=\"left\"></clr-icon>\n</button>\n<div class=\"link-container\" #container>\n  <div class=\"link-list\" #list>\n    <li role=\"presentation\" class=\"nav-item\" *ngFor=\"let tab of tabList; let i = index;\">\n      <button class=\"btn btn-link nav-link\" [ngClass]=\"{'active': i === selectedIndex}\" (click)=\"selectTab(i)\">\n        {{tab.title}}\n      </button>\n    </li>\n  </div>\n</div>\n<button class=\"btn btn-icon right-arrow\" (click)=\"scrollTo('right')\">\n  <clr-icon shape=\"angle\" dir=\"right\"></clr-icon>\n</button>"
+module.exports = "<button class=\"btn btn-icon left-arrow\" (click)=\"scrollTo('left')\" [disabled]=\"disableScrollLeft\">\n  <clr-icon shape=\"angle\" dir=\"left\"></clr-icon>\n</button>\n<div class=\"link-container\" #container>\n  <div class=\"link-list\" #list>\n    <li role=\"presentation\" class=\"nav-item\" *ngFor=\"let tab of tabList; let i = index;\">\n      <button class=\"btn btn-link nav-link\" [ngClass]=\"{'active': i === selectedIndex}\" (click)=\"selectTab(i)\">\n        {{tab.title}}\n      </button>\n    </li>\n  </div>\n</div>\n<button class=\"btn btn-icon right-arrow\" (click)=\"scrollTo('right')\" [disabled]=\"disableScrollRight\">\n  <clr-icon shape=\"angle\" dir=\"right\"></clr-icon>\n</button>"
 
 /***/ }),
 
@@ -228,10 +228,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 var TabHeaderComponent = /** @class */ (function () {
-    function TabHeaderComponent() {
+    function TabHeaderComponent(cd) {
+        this.cd = cd;
         this.navClass = true;
         this.select = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
         this.selectedIndex = 0;
+        this.disableScrollRight = false;
+        this.disableScrollLeft = false;
         this._scrollDistance = 0;
     }
     Object.defineProperty(TabHeaderComponent.prototype, "scrollDistance", {
@@ -239,6 +242,7 @@ var TabHeaderComponent = /** @class */ (function () {
         set: function (v) {
             this._scrollDistance = Math.max(0, Math.min(this.getMaxScrollDistance(), v));
             this._scrollDistanceChanged = true;
+            this.checkScrollingControls();
         },
         enumerable: true,
         configurable: true
@@ -249,7 +253,11 @@ var TabHeaderComponent = /** @class */ (function () {
         if (this._scrollDistanceChanged) {
             this.updateTabScrollPosition();
             this._scrollDistanceChanged = false;
+            this.checkScrollingControls();
         }
+    };
+    TabHeaderComponent.prototype.ngAfterViewInit = function () {
+        this.checkScrollingControls();
     };
     TabHeaderComponent.prototype.selectTab = function (index) {
         this.selectedIndex = index;
@@ -268,6 +276,11 @@ var TabHeaderComponent = /** @class */ (function () {
         var scrollDistance = this.scrollDistance;
         var translateX = -scrollDistance;
         this.listEl.nativeElement.style.transform = "translateX(" + translateX + "px)";
+    };
+    TabHeaderComponent.prototype.checkScrollingControls = function () {
+        this.disableScrollLeft = this.scrollDistance === 0;
+        this.disableScrollRight = this.scrollDistance === this.getMaxScrollDistance();
+        this.cd.markForCheck();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* HostBinding */])('class.nav'),
@@ -296,7 +309,7 @@ var TabHeaderComponent = /** @class */ (function () {
             styles: [__webpack_require__("./src/app/tabs/tab-header/tab-header.component.scss")],
             changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ChangeDetectionStrategy */].OnPush
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */]])
     ], TabHeaderComponent);
     return TabHeaderComponent;
 }());
