@@ -1,4 +1,4 @@
-<button class="btn btn-icon left-arrow" (click)="scrollTo('left')">
+<button class="btn btn-icon left-arrow" (click)="scrollTo('left')" [disabled]="disableScrollLeft">
   <clr-icon shape="angle" dir="left"></clr-icon>
 </button>
 <div class="link-container" #container>
@@ -10,6 +10,6 @@
     </li>
   </div>
 </div>
-<button class="btn btn-icon right-arrow" (click)="scrollTo('right')">
+<button class="btn btn-icon right-arrow" (click)="scrollTo('right')" [disabled]="disableScrollRight">
   <clr-icon shape="angle" dir="right"></clr-icon>
 </button>
