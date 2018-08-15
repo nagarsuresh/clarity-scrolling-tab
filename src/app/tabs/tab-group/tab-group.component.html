@@ -1,0 +1,6 @@
+<sn-tab-header [tabList]="tabList" (select)="selectTab($event)"></sn-tab-header>
+
+<ng-template #notabs>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="tabContents"></ng-container>

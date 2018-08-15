@@ -1,0 +1,10 @@
+:host{
+    display: flex;
+    flex-direction: column;
+}
+.tab-container {
+    display: block;
+    border: 1px solid #ff9900;
+    height: 300px;
+    flex: 1;
+}

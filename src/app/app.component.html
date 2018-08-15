@@ -1,0 +1,23 @@
+<div class="main-container">
+  <div class="content-container">
+    <div class="content-area">
+      <h1>Clarity Tab Container</h1>
+      <clr-tabs class="tab-container">
+        <clr-tab *ngFor="let tab of tabs; let i = index;">
+          <button clrTabLink [clrTabLinkInOverflow]="i > 10">{{tab.label}}</button>
+          <clr-tab-content *clrIfActive>
+            <h1>{{tab.contents}}</h1>
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+
+
+      <h1>New Tab Contianer</h1>
+      <sn-tab-group class="tab-container">
+        <sn-tab title="{{tab.label}}" *ngFor="let tab of tabs">
+          <h1>{{tab.contents}}</h1>
+        </sn-tab>
+      </sn-tab-group>
+    </div>
+  </div>
+</div>

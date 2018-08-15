@@ -1,0 +1,15 @@
+<button class="btn btn-icon left-arrow" (click)="scrollTo('left')">
+  <clr-icon shape="angle" dir="left"></clr-icon>
+</button>
+<div class="link-container" #container>
+  <div class="link-list" #list>
+    <li role="presentation" class="nav-item" *ngFor="let tab of tabList; let i = index;">
+      <button class="btn btn-link nav-link" [ngClass]="{'active': i === selectedIndex}" (click)="selectTab(i)">
+        {{tab.title}}
+      </button>
+    </li>
+  </div>
+</div>
+<button class="btn btn-icon right-arrow" (click)="scrollTo('right')">
+  <clr-icon shape="angle" dir="right"></clr-icon>
+</button>
