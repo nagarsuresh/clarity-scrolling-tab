@@ -1,7 +1,8 @@
 import {
   AfterContentChecked, AfterViewInit, ChangeDetectionStrategy,
-  ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild
+  ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild, QueryList
 } from '@angular/core';
+import { TabComponent } from '../tab/tab.component';
 
 @Component({
   selector: 'sn-tab-header',
@@ -14,7 +15,7 @@ export class TabHeaderComponent implements OnInit, AfterContentChecked, AfterVie
   @HostBinding('class.nav') navClass = true;
 
   @Input()
-  tabList;
+  tabList: QueryList<TabComponent>;
 
   @Output()
   select: EventEmitter<number> = new EventEmitter();

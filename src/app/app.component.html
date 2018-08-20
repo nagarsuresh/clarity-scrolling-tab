@@ -1,4 +1,21 @@
 <div class="main-container">
+  <header class="header-1">
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <clr-icon shape="scroll"></clr-icon>
+        <span class="title">Scrolling Tabs</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <!-- <a href="javascript://" class="active nav-link nav-text">Home</a> -->
+      <a href="https://github.com/nagarsuresh/clarity-scrolling-tab" class="nav-link nav-text">SOURCE CODE</a>
+    </div>
+    <!-- <div class="header-actions">
+      <a href="javascript://" class="nav-link nav-icon">
+        <clr-icon shape="cog"></clr-icon>
+      </a>
+    </div> -->
+  </header>
   <div class="content-container">
     <div class="content-area">
       <h1>Clarity Tab Container</h1>
@@ -12,7 +29,7 @@
       </clr-tabs>
 
 
-      <h1>New Tab Contianer</h1>
+      <h1>Scrolling Tab Container</h1>
       <sn-tab-group class="tab-container">
         <sn-tab title="{{tab.label}}" *ngFor="let tab of tabs">
           <h1>{{tab.contents}}</h1>
