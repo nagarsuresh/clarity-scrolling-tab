@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Inject, forwardRef, ViewChild, TemplateRef } from '@angular/core';
+import { TabHeaderDirective } from './../tab-header.directive';
+import { Component, OnInit, Input, Inject, forwardRef, ViewChild, TemplateRef, ContentChild, AfterContentInit } from '@angular/core';
 import { TabGroupComponent } from '../tab-group/tab-group.component';
 
 @Component({
@@ -6,10 +7,13 @@ import { TabGroupComponent } from '../tab-group/tab-group.component';
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss']
 })
-export class TabComponent implements OnInit {
+export class TabComponent implements OnInit, AfterContentInit {
 
   @Input()
   title: string;
+
+  @ContentChild(TabHeaderDirective, { read: TemplateRef})
+  tabHeader: TemplateRef<any>;
 
   @ViewChild(TemplateRef)
   contents: TemplateRef<any>;
@@ -18,6 +22,9 @@ export class TabComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentInit() {
   }
 
 }

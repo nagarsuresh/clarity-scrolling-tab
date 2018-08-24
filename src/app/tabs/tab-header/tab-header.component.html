@@ -5,7 +5,12 @@
   <div class="link-list" #list>
     <li role="presentation" class="nav-item" *ngFor="let tab of tabList; let i = index;">
       <button class="btn btn-link nav-link" [ngClass]="{'active': i === selectedIndex}" (click)="selectTab(i)">
-        {{tab.title}}
+        <ng-container *ngIf="tab.tabHeader">
+          <ng-container *ngTemplateOutlet="tab.tabHeader; context:{$implicit: tab}"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="!tab.tabHeader">
+            <ng-container *ngTemplateOutlet="header; context:{$implicit: tab}"></ng-container>
+          </ng-container>
       </button>
     </li>
   </div>
@@ -13,3 +18,7 @@
 <button class="btn btn-icon right-arrow" (click)="scrollTo('right')" [disabled]="disableScrollRight">
   <clr-icon shape="angle" dir="right"></clr-icon>
 </button>
+
+<ng-template #header let-tab let-i="i">
+  {{tab.title}}
+</ng-template>

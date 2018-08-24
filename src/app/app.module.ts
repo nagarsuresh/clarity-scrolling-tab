@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabGroupComponent } from './tabs/tab-group/tab-group.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { TabHeaderComponent } from './tabs/tab-header/tab-header.component';
+import { TabHeaderDirective } from './tabs/tab-header.directive';
 
 
 
@@ -17,7 +18,8 @@ import { TabHeaderComponent } from './tabs/tab-header/tab-header.component';
     AppComponent,
     TabGroupComponent,
     TabComponent,
-    TabHeaderComponent
+    TabHeaderComponent,
+    TabHeaderDirective
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,9 @@
       <h1>Scrolling Tab Container</h1>
       <sn-tab-group class="tab-container">
         <sn-tab title="{{tab.label}}" *ngFor="let tab of tabs">
+          <ng-template snTabHeader>
+            <clr-icon shape="house"></clr-icon> {{tab.label}}
+          </ng-template>
           <h1>{{tab.contents}}</h1>
         </sn-tab>
       </sn-tab-group>
